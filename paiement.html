@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agios — Débloquer mon analyse</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f4ee;
+      color: #17212b;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: min(100% - 32px, 650px);
+      margin: auto;
+    }
+
+    header {
+      padding: 24px 0;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    main {
+      padding: 35px 0 70px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #d9d4cb;
+      border-radius: 16px;
+      padding: 25px;
+    }
+
+    h1 {
+      font-size: 32px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .subtitle {
+      color: #68717a;
+      margin-bottom: 25px;
+    }
+
+    .value {
+      border: 1px solid #d9d4cb;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .amount {
+      font-size: 40px;
+      font-weight: 800;
+      margin: 8px 0;
+    }
+
+    .plans {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .plan {
+      border: 1px solid #d9d4cb;
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .plan.featured {
+      border: 2px solid #17212b;
+    }
+
+    .plan-title {
+      font-weight: 800;
+      font-size: 19px;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 5px 0;
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      padding: 15px;
+      background: #17212b;
+      color: white;
+      border-radius: 9px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .guarantee {
+      margin-top: 22px;
+      padding: 16px;
+      background: #f7f4ee;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .small {
+      text-align: center;
+      color: #68717a;
+      font-size: 13px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">Agios</div>
+</header>
+
+<main>
+  <div class="container">
+
+    <div class="card">
+
+      <h1>Voilà ton plan, prêt.</h1>
+
+      <p class="subtitle">
+        Tu as déjà identifié un coût potentiel de 130 €.
+        Agios peut maintenant t'aider à analyser ton relevé et préparer ta réclamation.
+      </p>
+
+      <div class="value">
+        <strong>Ce que tu débloques</strong>
+        <br><br>
+        ✓ Analyse de tes frais bancaires<br>
+        ✓ Total sur 12 mois<br>
+        ✓ Identification des frais à vérifier<br>
+        ✓ Réclamation prête à transmettre
+      </div>
+
+      <h2>Choisis ton accès</h2>
+
+      <div class="plans">
+
+        <div class="plan">
+          <div class="plan-title">Essentiel</div>
+          <div class="price">5 €/mois</div>
+          <p>Pour analyser tes frais et préparer ta démarche.</p>
+          <a class="button" href="#">
+            Choisir Essentiel
+          </a>
+        </div>
+
+        <div class="plan featured">
+          <div class="plan-title">Agios Plus</div>
+          <div class="price">5 €/mois</div>
+          <p>Accès complet à l'analyse et au suivi de tes réclamations.</p>
+          <a class="button" href="#">
+            Choisir Agios Plus
+          </a>
+        </div>
+
+      </div>
+
+      <div class="guarantee">
+        <strong>Sans engagement.</strong><br>
+        Tu peux résilier ton abonnement à tout moment.
+      </div>
+
+      <p class="small">
+        Paiement sécurisé. Tu seras informé avant toute facturation.
+      </p>
+
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>
