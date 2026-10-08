@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyse bancaire — Agios</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      background: #F7F4EE;
+      color: #17212B;
+      font-family: Arial, sans-serif;
+    }
+    main {
+      max-width: 560px;
+      margin: 40px auto;
+      padding: 28px;
+      background: white;
+      border: 1px solid #e5e0d7;
+      border-radius: 16px;
+    }
+    h1 { font-size: 28px; }
+    p { line-height: 1.6; }
+    input, button {
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    input { border: 1px solid #ccc; background: white; }
+    button {
+      border: 0;
+      background: #17212B;
+      color: white;
+      font-weight: bold;
+    }
+    #message { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <main>
+    <p>AGIOS · ANALYSE BANCAIRE</p>
+    <h1>Analyse tes frais bancaires</h1>
+    <p>Choisis un relevé bancaire PDF ou CSV pour préparer l'analyse de tes frais.</p>
+
+    <label for="releve">Ton relevé bancaire</label>
+    <input id="releve" type="file" accept=".pdf,.csv,application/pdf,text/csv">
+
+    <button onclick="preparerAnalyse()">Préparer mon relevé</button>
+
+    <p id="message">
+      Pour protéger tes données, sélectionne uniquement un relevé que tu acceptes de traiter.
+    </p>
+  </main>
+
+  <script>
+    function preparerAnalyse() {
+      const fichier = document.getElementById("releve").files[0];
+      const message = document.getElementById("message");
+
+      if (!fichier) {
+        message.textContent = "Choisis d'abord un fichier PDF ou CSV.";
+        return;
+      }
+
+      const extension = fichier.name.split(".").pop().toLowerCase();
+
+      if (!["pdf", "csv"].includes(extension)) {
+        message.textContent = "Format non pris en charge. Choisis un PDF ou un CSV.";
+        return;
+      }
+
+      message.textContent =
+        "Fichier sélectionné : " + fichier.name +
+        ". L'extraction automatique n'est pas encore activée. Ton fichier n'a pas été envoyé.";
+    }
+  </script>
+</body>
+</html>
