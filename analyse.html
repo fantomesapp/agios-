@@ -82,10 +82,39 @@ async function preparerAnalyse() {
   const extension = fichier.name.split(".").pop().toLowerCase();
 
   if (extension === "pdf") {
-    message.textContent =
-      "Le PDF est reconnu, mais sa lecture automatique n'est pas encore activée. Aucun frais n'a été calculé.";
-    return;
+  try {
+    if (!window.pdfjsLib) {
+      message.textContent = "Le lecteur PDF n'est pas chargé. Actualise la page et réessaie.";
+      return;
+    }
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+    const documentPDF = await pdfjsLib.getDocument({
+      data: await fichier.arrayBuffer()
+    }).promise;
+
+    let textePDF = "";
+
+    for (let page = 1; page <= documentPDF.numPages; page++) {
+      const contenu = await documentPDF.getPage(page);
+      const elements = await contenu.getTextContent();
+      textePDF += elements.items.map(item => item.str).join(" ") + "\n";
+    }
+
+    message.textContent = textePDF.trim()
+      ? "Texte extrait du PDF :\n\n" + textePDF.slice(0, 4000) +
+        "\n\nAttention : les frais ne sont pas encore analysés automatiquement."
+      : "Aucun texte détecté. Le PDF est peut-être un document scanné.";
+
+  } catch (erreur) {
+    message.textContent = "Impossible de lire ce PDF. Essaie avec un PDF contenant du texte.";
   }
+
+  return;
+}
+  
 
   if (extension !== "csv") {
     message.textContent = "Choisis un fichier PDF ou CSV.";
