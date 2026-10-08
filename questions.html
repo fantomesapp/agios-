@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agios — Ton analyse</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f4ee;
+      color: #17212b;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: min(100% - 32px, 650px);
+      margin: auto;
+    }
+
+    header {
+      padding: 24px 0;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    main {
+      padding: 35px 0 70px;
+    }
+
+    .progress {
+      font-size: 14px;
+      color: #68717a;
+      margin-bottom: 35px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #d9d4cb;
+      border-radius: 16px;
+      padding: 25px;
+    }
+
+    h1 {
+      font-size: 32px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: #68717a;
+      margin-bottom: 30px;
+    }
+
+    .question {
+      font-size: 21px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    button {
+      width: 100%;
+      padding: 17px;
+      border: 1px solid #d9d4cb;
+      background: #f7f4ee;
+      color: #17212b;
+      border-radius: 10px;
+      font-size: 16px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    button:hover {
+      border-color: #17212b;
+    }
+
+    .next {
+      margin-top: 22px;
+      background: #17212b;
+      color: white;
+      text-align: center;
+      font-weight: 700;
+      border: none;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 20px;
+      border-left: 4px solid #c93434;
+      background: #fff;
+    }
+
+    .amount {
+      font-size: 42px;
+      font-weight: 800;
+      margin: 8px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">Agios</div>
+</header>
+
+<main>
+  <div class="container">
+
+    <div class="progress" id="progress">
+      Question 1 sur 3
+    </div>
+
+    <div class="card">
+
+      <div id="question1">
+        <h1>On va commencer ton analyse.</h1>
+
+        <p class="subtitle">
+          3 questions rapides. Pas besoin de connaître tes frais bancaires.
+        </p>
+
+        <p class="question">
+          Ta banque te facture-t-elle régulièrement des frais ?
+        </p>
+
+        <div class="options">
+          <button onclick="answer(1, 'souvent')">Oui, assez souvent</button>
+          <button onclick="answer(1, 'parfois')">Oui, de temps en temps</button>
+          <button onclick="answer(1, 'rarement')">Rarement</button>
+          <button onclick="answer(1, 'non')">Je ne sais pas</button>
+        </div>
+      </div>
+
+      <div id="question2" class="hidden">
+        <h1>Question 2</h1>
+
+        <p class="question">
+          Quand tu as des frais, ils sont généralement de quel ordre ?
+        </p>
+
+        <div class="options">
+          <button onclick="answer(2, 'petits')">Quelques euros</button>
+          <button onclick="answer(2, 'moyens')">10 à 30 €</button>
+          <button onclick="answer(2, 'importants')">Plus de 30 €</button>
+          <button onclick="answer(2, 'inconnu')">Je ne sais pas</button>
+        </div>
+      </div>
+
+      <div id="question3" class="hidden">
+        <h1>Dernière question</h1>
+
+        <p class="question">
+          As-tu déjà demandé à ta banque le remboursement de ces frais ?
+        </p>
+
+        <div class="options">
+          <button onclick="answer(3, 'oui')">Oui</button>
+          <button onclick="answer(3, 'non')">Non</button>
+          <button onclick="answer(3, 'parfois')">Parfois</button>
+        </div>
+      </div>
+
+      <div id="result" class="hidden">
+
+        <h1>Ton premier résultat</h1>
+
+        <p class="subtitle">
+          D'après tes réponses, tes frais méritent d'être regardés de plus près.
+        </p>
+
+        <div class="result">
+          <strong>Estimation du coût potentiel</strong>
+          <div class="amount" id="amount">0 €</div>
+          <p>
+            Cette estimation sera remplacée par le montant réel lorsque tu importeras ton relevé bancaire.
+          </p>
+        </div>
+
+        <button class="next" onclick="location.href='index.html'">
+          Continuer avec Agios →
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<script>
+  let answers = {};
+  let currentQuestion = 1;
+
+  function answer(question, value) {
+    answers[question] = value;
+
+    if (question === 1) {
+      document.getElementById('question1').classList.add('hidden');
+      document.getElementById('question2').classList.remove('hidden');
+      document.getElementById('progress').textContent = 'Question 2 sur 3';
+    }
+
+    if (question === 2) {
+      document.getElementById('question2').classList.add('hidden');
+      document.getElementById('question3').classList.remove('hidden');
+      document.getElementById('progress').textContent = 'Question 3 sur 3';
+    }
+
+    if (question === 3) {
+      document.getElementById('question3').classList.add('hidden');
+      document.getElementById('result').classList.remove('hidden');
+      document.getElementById('progress').textContent = 'Analyse terminée';
+
+      let amount = 0;
+
+      if (answers[1] === 'souvent') amount += 60;
+      if (answers[1] === 'parfois') amount += 30;
+
+      if (answers[2] === 'petits') amount += 20;
+      if (answers[2] === 'moyens') amount += 50;
+      if (answers[2] === 'importants') amount += 100;
+
+      if (answers[3] === 'non') amount += 20;
+
+      document.getElementById('amount').textContent = amount + ' €';
+    }
+  }
+</script>
+
+</body>
+</html>
