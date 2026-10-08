@@ -54,7 +54,7 @@
     <p>Importe un relevé PDF ou CSV pour préparer la vérification de tes frais.</p>
 
     <label for="releve">Choisir un relevé bancaire</label>
-    <input id="releve" type="file" accept=".pdf,.csv,application/pdf,text/csv">
+    <input id="releve" type="file" accept=".pdf,.csv,application/pdf,text/csv" onchange="document.getElementById('message').textContent = this.files.length ? 'Fichier sélectionné : ' + this.files[0].name : 'Aucun fichier sélectionné.'">
 
     <button type="button" onclick="preparerAnalyse()">Vérifier mon fichier</button>
 
