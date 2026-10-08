@@ -3,10 +3,214 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Agios — Récupère tes frais bancaires</title>
+  <meta
+    name="description"
+    content="Identifie tes frais bancaires, mesure ce qu'ils te coûtent et prépare ta réclamation."
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f4ee;
+      color: #17212b;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: min(100% - 32px, 900px);
+      margin: auto;
+    }
+
+    header {
+      padding: 24px 0;
+      font-weight: 800;
+      font-size: 24px;
+    }
+
+    main {
+      padding: 45px 0 70px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 12px;
+      border: 1px solid #17212b;
+      border-radius: 999px;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 11vw, 76px);
+      line-height: 0.98;
+      letter-spacing: -2px;
+      max-width: 800px;
+      margin-bottom: 24px;
+    }
+
+    .intro {
+      font-size: 20px;
+      max-width: 650px;
+      margin-bottom: 32px;
+    }
+
+    .cta {
+      display: inline-block;
+      background: #17212b;
+      color: white;
+      text-decoration: none;
+      padding: 17px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 17px;
+    }
+
+    .section {
+      margin-top: 55px;
+    }
+
+    .section h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .cards {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #d9d4cb;
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .number {
+      font-size: 34px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-size: 19px;
+      margin-bottom: 7px;
+    }
+
+    .card p {
+      color: #4e5861;
+    }
+
+    .warning {
+      border-left: 4px solid #c93434;
+      background: white;
+      padding: 20px;
+      margin-top: 18px;
+    }
+
+    footer {
+      border-top: 1px solid #d9d4cb;
+      padding: 25px 0;
+      font-size: 13px;
+      color: #68717a;
+    }
+
+    @media (min-width: 700px) {
+      .cards {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Agios</h1>
-  <p>Récupère les frais bancaires prélevés à tort.</p>
+
+  <header>
+    <div class="container">Agios</div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <span class="badge">Frais bancaires · Simple · Gratuit pour commencer</span>
+
+      <h1>
+        Récupère les frais bancaires prélevés à tort.
+      </h1>
+
+      <p class="intro">
+        Agios analyse tes frais bancaires, calcule ce qu'ils te coûtent
+        et t'aide à préparer une réclamation claire auprès de ta banque.
+      </p>
+
+      <a href="#commencer" class="cta">
+        Commencer gratuitement →
+      </a>
+
+      <section class="section">
+        <h2>Ce qu'Agios fait pour toi</h2>
+
+        <div class="cards">
+
+          <div class="card">
+            <div class="number">01</div>
+            <h3>Repère tes frais</h3>
+            <p>
+              Identifie les lignes de frais bancaires présentes sur tes relevés.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="number">02</div>
+            <h3>Mesure le coût</h3>
+            <p>
+              Additionne tes frais sur 12 mois pour voir combien ta banque t'a réellement prélevé.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="number">03</div>
+            <h3>Prépare ta réclamation</h3>
+            <p>
+              Obtiens une réclamation structurée que tu peux transmettre à ta banque.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section" id="commencer">
+        <h2>Combien te coûtent vraiment tes frais bancaires ?</h2>
+
+        <div class="warning">
+          <strong>Ça peut être plus que tu ne le penses.</strong>
+          <p>
+            Les petits frais répétés passent facilement inaperçus sur un relevé.
+            Agios est conçu pour les rendre visibles.
+          </p>
+        </div>
+
+        <div style="margin-top: 25px;">
+          <a href="#" class="cta">Commencer mon analyse →</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Agios · Mentions légales · CGV · Politique de confidentialité
+    </div>
+  </footer>
+
 </body>
 </html>
