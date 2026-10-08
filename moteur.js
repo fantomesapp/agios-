@@ -161,3 +161,4 @@ function analyserCSV(texte) {
     avertissement: "Cette détection par mots-clés peut manquer des frais ou classer certaines opérations à tort. Elle ne détermine pas si un frais est illégal."
   };
 }
+window.analyserCSV = analyserCSV;
