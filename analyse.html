@@ -56,7 +56,7 @@
     <label for="releve">Choisir un relevé bancaire</label>
     <input id="releve" type="file" accept=".pdf,.csv,application/pdf,text/csv" onchange="document.getElementById('message').textContent = this.files.length ? 'Fichier sélectionné : ' + this.files[0].name : 'Aucun fichier sélectionné.'">
 
-    <button type="button" onclick="alert('Le bouton fonctionne !'); preparerAnalyse();">Vérifier mon fichier</button>
+    <button type="button" onclick="preparerAnalyse()">Vérifier mon fichier</button>
 
     <p id="message" aria-live="polite">Aucun fichier sélectionné.</p>
 
