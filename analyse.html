@@ -68,7 +68,67 @@
   </main>
 
   <script>
-    function preparerAnalyse() {
+    
+async function preparerAnalyse() {
+  const champ = document.getElementById("releve");
+  const message = document.getElementById("message");
+  const fichier = champ.files[0];
+
+  if (!fichier) {
+    message.textContent = "Choisis d'abord un relevé bancaire.";
+    return;
+  }
+
+  const extension = fichier.name.split(".").pop().toLowerCase();
+
+  if (extension === "pdf") {
+    message.textContent =
+      "Le PDF est reconnu, mais sa lecture automatique n'est pas encore activée. Aucun frais n'a été calculé.";
+    return;
+  }
+
+  if (extension !== "csv") {
+    message.textContent = "Choisis un fichier PDF ou CSV.";
+    return;
+  }
+
+  try {
+    const texte = await fichier.text();
+
+    if (typeof window.analyserCSV !== "function") {
+      message.textContent =
+        "Le moteur d'analyse n'est pas chargé. Actualise la page et réessaie.";
+      return;
+    }
+
+    const resultat = window.analyserCSV(texte);
+
+    if (!resultat.succes) {
+      message.textContent = resultat.message;
+      return;
+    }
+
+    const details = resultat.operations
+      .filter(operation => operation.aVerifier)
+      .map(operation =>
+        `${operation.date} — ${operation.libelle} : ${operation.fraisPotentiel.toFixed(2)} € à vérifier`
+      );
+
+    message.textContent =
+      resultat.message +
+      "\n\nFrais potentiels à vérifier : " +
+      resultat.totalFrais.toFixed(2) +
+      " €\n\n" +
+      (details.length
+        ? details.join("\n")
+        : "Aucun frais potentiel repéré par les mots-clés.") +
+      "\n\n" + resultat.avertissement;
+  } catch (erreur) {
+    message.textContent =
+      "Impossible de lire ce fichier. Vérifie que le CSV est valide.";
+  }
+}
+
       const champ = document.getElementById("releve");
       const message = document.getElementById("message");
       const fichier = champ.files[0];
